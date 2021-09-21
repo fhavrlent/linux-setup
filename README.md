@@ -3,7 +3,7 @@
 
 ## Linux Mint
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/fhavrlent/linux-setup/main/mint.sh)"
+bash -c "`curl -L https://raw.githubusercontent.com/fhavrlent/linux-setup/main/mint.sh`"
 ```
 
 1. Add English (US) keyboard layout

@@ -1,13 +1,13 @@
 #!/bin/bash
 
 echo "
-    .--. 
-   |o_o | 
-   |:_/ | 
-  //   \ \ 
- (|     | ) 
-/'\_   _/'\ 
-\___)=(___/ 
+    .--.
+   |o_o |
+   |:_/ |
+  //   \ \
+ (|     | )
+/'\_   _/'\
+\___)=(___/
 "
 
 sudo mint-switch-to-local-mirror
@@ -27,39 +27,39 @@ sudo apt upgrade -y
 #################################
 
 apt_tools=(
-  "python3-dev"
-  "python3-pip"
-  "python3-setuptools"
-  "apt-transport-https"
-  "ruby"
-  "snapd"
-  "git"
+    "python3-dev"
+    "python3-pip"
+    "python3-setuptools"
+    "apt-transport-https"
+    "ruby"
+    "snapd"
+    "git"
 )
 
 pip_packages=(
-  "thefuck"
+    "thefuck"
 )
 
 gem_packages=(
-  "lolcat"
+    "lolcat"
 )
 
 apt_packages=(
-  "tig"
-  "zsh"
-  "fonts-firacode"
-  "steam"
-  "code"
-  "tilix"
-  "vlc"
+    "tig"
+    "zsh"
+    "fonts-firacode"
+    "steam"
+    "code"
+    "tilix"
+    "vlc"
 )
 
 snap_packages=(
-  "todoist"
+    "todoist"
 )
 
 npm_packages=(
-  "yarn"
+    "yarn"
 )
 
 #################################
@@ -87,23 +87,23 @@ rm -f ./keybase_amd64.deb
 ## Install packages
 
 for apt_tool in "${apt_tools[@]}"; do
-  sudo apt install "$apt_tool" -y
+    sudo apt install "$apt_tool" -y
 done
 
 for apt_package in "${apt_packages[@]}"; do
-  sudo apt install "$apt_package" -y
+    sudo apt install "$apt_package" -y
 done
 
 for gem_package in "${gem_packages[@]}"; do
-  sudo gem install "$gem_package"
+    sudo gem install "$gem_package"
 done
 
 for pip_package in "${pip_packages[@]}"; do
-  sudo pip3 install "$pip_package"
+    sudo pip3 install "$pip_package"
 done
 
 for snap_package in "${snap_packages[@]}"; do
-  sudo snap install "$snap_package"
+    sudo snap install "$snap_package"
 done
 
 ## Install nvm, node and yarn
@@ -113,7 +113,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 nvm install --lts
 
 for npm_package in "${npm_packages[@]}"; do
-  npm i "$npm_package" -g
+    npm i "$npm_package" -g
 done
 
 ## Install zsh and oh-my-zsh

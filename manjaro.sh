@@ -10,8 +10,6 @@ echo "
 \___)=(___/
 "
 
-sudo pacman --noconfirm -Syyu
-
 pacman_packages=(
     "chezmoi"
     "chromium"
@@ -41,9 +39,45 @@ npm_packages=(
     "yarn"
 )
 
+to_uninstall=(
+    "onlyoffice-desktopeditors"
+)
+
+echo "Uninstall packages"
+for package in "${to_uninstall[@]}"; do
+    sudo pacman -R --noconfirm "$package"
+done
+
+sudo pacman --noconfirm -Syyu
+
+##############
+echo "Install yay"
+sudo pacman -S --needed --noconfirm git base-devel yay
+##############
+
+echo "Install Pacman packages"
+for pacman_package in "${pacman_packages[@]}"; do
+    sudo pacman -S --noconfirm "$pacman_package"
+done
+
+echo "Install AUR packages"
+for aur_package in "${aur_packages[@]}"; do
+    yay -S --noconfirm "$aur_package"
+done
+
+echo "Install pip packages"
+for pip_package in "${pip_packages[@]}"; do
+    pip3 install "$pip_package"
+done
+
+
 ##############
 echo "Dotfiles"
-chezmoi init --apply --verbose fhavlent
+mkdir ~/.config/chezmoi -p
+cd ~/.config/chezmoi
+wget https://raw.githubusercontent.com/fhavrlent/linux-setup/main/chezmoi.toml
+cd ~
+chezmoi init --apply --verbose fhavrlent
 ##############
 
 ##############
@@ -58,14 +92,16 @@ cd ~
 ##############
 
 ##############
-echo "Install yay"
-sudo pacman -S --needed --noconfirm git base-devel yay
-##############
-
-##############
 echo "Set Node"
+. ~/.nvm/nvm.sh
 nvm install node
 ##############
+
+echo "Install npm packages"
+for npm_package in "${npm_packages[@]}"; do
+    npm i "$npm_package" -g
+done
+
 
 ##############
 echo "Mullvad GPG key"
@@ -74,25 +110,6 @@ gpg2 --import mullvad-code-signing.asc
 rm mullvad-code-signing.asc
 ##############
 
-echo "Install Pacman packages"
-for pacman_package in "${pacman_packages[@]}"; do
-    sudo pacman -S --noconfirm "$pacman_package"
-done
-
-echo "Install AUR packages"
-for aur_package in "${aur_packages[@]}"; do
-    yay -S --noconfirm "$aur_package"
-done
-
-echo "Install npm packages"
-for npm_package in "${npm_packages[@]}"; do
-    npm i "$npm_package" -g
-done
-
-echo "Install pip packages"
-for pip_package in "${pip_packages[@]}"; do
-    pip3 install "$pip_package"
-done
 
 echo "Import GPG Private key"
 cd ~/.gpg
@@ -103,4 +120,8 @@ gpg --command-fd 0 --no-tty --no-greeting -q --edit-key "$(
 awk '$1=="keyid:"{print$2;exit}')" trust
 cd ~
 
-source .zshrc
+
+echo "Manual steps"
+echo "1. source .zshrc"
+echo "2. Set dark theme"
+echo "3. Install en-us keyboard"

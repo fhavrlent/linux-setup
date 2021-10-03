@@ -10,7 +10,7 @@ echo "
 \___)=(___/
 "
 
-sudo pacman -Syyu
+sudo pacman --noconfirm -Syyu
 
 pacman_packages=(
     "chezmoi"

@@ -1,7 +1,13 @@
 # Linux distro setup scripts
 
+## Manjaro KDE
+
+```bash
+bash -c "`curl -L https://raw.githubusercontent.com/fhavrlent/linux-setup/main/manjaro.sh`"
+```
 
 ## Linux Mint
+
 ```bash
 bash -c "`curl -L https://raw.githubusercontent.com/fhavrlent/linux-setup/main/mint.sh`"
 ```

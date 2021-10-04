@@ -1,9 +1,15 @@
 # Linux distro setup scripts
 
+## Manjaro XFCE
+
+```bash
+bash -c "`curl -L https://raw.githubusercontent.com/fhavrlent/linux-setup/main/manjaro-xfce.sh`"
+```
+
 ## Manjaro KDE
 
 ```bash
-bash -c "`curl -L https://raw.githubusercontent.com/fhavrlent/linux-setup/main/manjaro.sh`"
+bash -c "`curl -L https://raw.githubusercontent.com/fhavrlent/linux-setup/main/manjaro-kde.sh`"
 ```
 
 ## Linux Mint

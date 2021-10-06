@@ -23,12 +23,15 @@ pacman_packages=(
     "discord"
     "keychain"
     "libreoffice-fresh"
+    "lightdm-webkit2-greeter"
     "lolcat"
-    "manjaro-zsh-config"
     "neofetch"
     "noto-fonts-emoji"
+    "numlockx"
     "nvm"
+    "plank"
     "python-pip"
+    "redshift"
     "thefuck"
     "tig"
     "tilix"
@@ -46,6 +49,10 @@ aur_packages=(
     "mullvad-vpn-bin"
     "todoist-appimage"
     "visual-studio-code-bin"
+    "gotop-bin"
+    "spotify"
+    "lightdm-webkit2-theme-glorious"
+    "ulauncher"
 )
 
 pip_packages=(
@@ -58,6 +65,7 @@ npm_packages=(
 
 to_uninstall=(
     "onlyoffice-desktopeditors"
+    "xfce4-terminal"
 )
 
 echo "Uninstall packages"
@@ -97,6 +105,12 @@ wget https://raw.githubusercontent.com/fhavrlent/linux-setup/main/chezmoi.toml
 cd ~
 chezmoi init --apply --verbose fhavrlent
 ##############
+
+##############
+"Import console profile"
+dconf load /com/gexperts/Tilix/ < ~/.tilix.dconf
+##############
+
 
 ##############
 echo "Fonts"

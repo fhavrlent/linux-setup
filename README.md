@@ -29,3 +29,8 @@ greeter-setup-script=/usr/bin/numlockx on
     ![Whisker 1](assets/whisker1.png)![Whisker 2](assets/whisker2.png)![Whisker 3](assets/whisker3.png)
 14. Update kernel and language packages
 15. Reboot and hope for the best 
+
+
+
+* [Plank theme](https://www.xfce-look.org/p/1279806/)
+* [Wallpaper](https://www.pling.com/p/1425082)

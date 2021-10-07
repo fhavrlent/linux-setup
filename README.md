@@ -1,9 +1,7 @@
-# Linux distro setup scripts
-
-## Manjaro XFCE
+# Manjaro XFCE setup
 
 ```bash
-bash -c "`curl -L https://raw.githubusercontent.com/fhavrlent/linux-setup/main/manjaro-xfce.sh`"
+bash -c "`curl -L https://raw.githubusercontent.com/fhavrlent/manjaro-xfce-setup/main/manjaro-xfce.sh`"
 ```
 
 1. Edit `/etc/lightdm/lightdm.conf`
@@ -32,23 +30,3 @@ greeter-setup-script=/usr/bin/numlockx on
     
     ![Whisker 1](assets/whisker1.png)![Whisker 2](assets/whisker2.png)![Whisker 3](assets/whisker3.png)
 17. Update kernel and language packages
-
-## Manjaro KDE
-
-```bash
-bash -c "`curl -L https://raw.githubusercontent.com/fhavrlent/linux-setup/main/manjaro-kde.sh`"
-```
-
-## Linux Mint
-
-```bash
-bash -c "`curl -L https://raw.githubusercontent.com/fhavrlent/linux-setup/main/mint.sh`"
-```
-
-1. Add English (US) keyboard layout
-2. Change theme
-   1. Mint-Y-Dark
-   2. Mint-Y-Dark
-   3. Mint-Y-Dark
-   4. DMZ-White
-   5. Mint-Y-Dark

@@ -158,7 +158,7 @@ rm .zshrc
 ##############
 echo "Dotfiles"
 mkdir ~/.config/chezmoi -p
-wget https://raw.githubusercontent.com/fhavrlent/linux-setup/main/chezmoi.toml
+wget https://raw.githubusercontent.com/fhavrlent/manjaro-xfce-setup/main/chezmoi.toml
 mv ./chezmoi.toml ~/.config/chezmoi
 chezmoi init --apply --verbose fhavrlent
 ##############
@@ -174,7 +174,7 @@ mv ./nord.json ~/.config/tilix/schemes
 ##############
 echo "Plank theme"
 mkdir ~/.local/share/plank/themes -p
-wget https://github.com/fhavrlent/linux-setup/raw/main/assets/mcOS-BS-iMacM1-DarkBlue.zip
+wget https://github.com/fhavrlent/manjaro-xfce-setup/raw/main/assets/mcOS-BS-iMacM1-DarkBlue.zip
 unzip ~/.local/share/plank/themes/mcOS-BS-iMacM1-DarkBlue.zip -d ~/.local/share/plank/themes
 rm mcOS-BS-iMacM1-DarkBlue.zip
 ##############
@@ -188,8 +188,70 @@ sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode=true #\1/g' /etc/lightdm/ligh
 ##############
 echo "Download wallpaper"
 cd /usr/share/backgrounds/
-sudo wget https://github.com/fhavrlent/linux-setup/raw/main/assets/twomoons.png
+sudo wget https://github.com/fhavrlent/manjaro-xfce-setup/raw/main/assets/twomoons.png
 cd ~
 ##############
 
-zsh -c "`curl -L https://raw.githubusercontent.com/fhavrlent/linux-setup/main/manjaro-xfce-zsh.sh`"
+zsh -c "`curl -L https://raw.githubusercontent.com/fhavrlent/manjaro-xfce-setup/main/manjaro-xfce-zsh.sh`"
+
+
+##############
+echo "Mullvad GPG key"
+wget https://mullvad.net/media/mullvad-code-signing.asc
+gpg2 --import mullvad-code-signing.asc
+rm mullvad-code-signing.asc
+##############
+
+##############
+echo "Import GPG Private key"
+gpg --batch --import ~/.gpg/privkey.asc
+(echo 5; echo y; echo save) |
+gpg --command-fd 0 --no-tty --no-greeting -q --edit-key "$(
+  gpg --list-packets <privkey.asc |
+awk '$1=="keyid:"{print$2;exit}')" trust
+##############
+
+##############
+echo "Install Oh-My-Zsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+rm .zshrc
+##############
+
+##############
+echo "Dotfiles"
+mkdir ~/.config/chezmoi -p
+wget https://raw.githubusercontent.com/fhavrlent/manjaro-xfce-setup/main/chezmoi.toml
+mv ./chezmoi.toml ~/.config/chezmoi
+chezmoi init --apply --verbose fhavrlent
+##############
+
+
+##############
+echo "Tilix theme"
+mkdir ~/.config/tilix/schemes -p
+wget https://raw.githubusercontent.com/arcticicestudio/nord-tilix/develop/src/json/nord.json
+mv ./nord.json ~/.config/tilix/schemes
+##############
+
+##############
+echo "Plank theme"
+mkdir ~/.local/share/plank/themes -p
+wget https://github.com/fhavrlent/manjaro-xfce-setup/raw/main/assets/mcOS-BS-iMacM1-DarkBlue.zip
+unzip ~/.local/share/plank/themes/mcOS-BS-iMacM1-DarkBlue.zip -d ~/.local/share/plank/themes
+rm mcOS-BS-iMacM1-DarkBlue.zip
+##############
+
+##############
+echo "Greeter pre-setup"
+sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme=glorious #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode=true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+##############
+
+##############
+echo "Download wallpaper"
+cd /usr/share/backgrounds/
+sudo wget https://github.com/fhavrlent/manjaro-xfce-setup/raw/main/assets/twomoons.png
+cd ~
+##############
+
+zsh -c "`curl -L https://raw.githubusercontent.com/fhavrlent/manjaro-xfce-setup/main/manjaro-xfce-zsh.sh`"

@@ -238,7 +238,7 @@ mv ./nord.json ~/.config/tilix/schemes
 echo "Plank theme"
 mkdir ~/.local/share/plank/themes -p
 wget https://github.com/fhavrlent/manjaro-xfce-setup/raw/main/assets/mcOS-BS-iMacM1-DarkBlue.zip
-unzip ~/.local/share/plank/themes/mcOS-BS-iMacM1-DarkBlue.zip -d ~/.local/share/plank/themes
+unzip mcOS-BS-iMacM1-DarkBlue.zip -d ~/.local/share/plank/themes
 rm mcOS-BS-iMacM1-DarkBlue.zip
 ##############
 

@@ -255,4 +255,6 @@ sudo wget https://github.com/fhavrlent/manjaro-xfce-setup/raw/main/assets/twomoo
 cd ~
 ##############
 
+chsh -s $(which zsh)
+
 zsh -c "`curl -L https://raw.githubusercontent.com/fhavrlent/manjaro-xfce-setup/main/manjaro-xfce-zsh.sh`"

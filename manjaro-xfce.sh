@@ -41,14 +41,15 @@ pacman_packages=(
 )
 
 aur_packages=(
+    "emote"
     "gotop-bin"
     "keybase-bin"
+    "lightdm-webkit2-theme-glorious"
     "mullvad-vpn-bin"
     "spotify"
     "todoist-appimage"
     "ulauncher"
     "visual-studio-code-bin"
-    "lightdm-webkit2-theme-glorious"
 )
 
 pip_packages=(

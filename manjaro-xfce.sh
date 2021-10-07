@@ -23,7 +23,6 @@ pacman_packages=(
     "discord"
     "keychain"
     "libreoffice-fresh"
-    "lightdm-webkit2-greeter"
     "lolcat"
     "neofetch"
     "noto-fonts-emoji"
@@ -36,23 +35,19 @@ pacman_packages=(
     "tig"
     "tilix"
     "ttf-fira-code"
-    "zsh-autosuggestions"
-    "zsh-completions"
-    "zsh-history-substring-search"
-    "zsh-syntax-highlighting"
-    "zsh-theme-powerlevel10k"
+    "ttf-roboto-mono"
+    "ttf-roboto"
     "zsh"
 )
 
 aur_packages=(
+    "gotop-bin"
     "keybase-bin"
     "mullvad-vpn-bin"
-    "todoist-appimage"
-    "visual-studio-code-bin"
-    "gotop-bin"
     "spotify"
-    "lightdm-webkit2-theme-glorious"
+    "todoist-appimage"
     "ulauncher"
+    "visual-studio-code-bin"
 )
 
 pip_packages=(
@@ -79,7 +74,6 @@ sudo pacman --noconfirm -Syyu
 ##############
 echo "Install yay"
 sudo pacman -S --needed --noconfirm git base-devel yay
-##############
 
 echo "Install Pacman packages"
 for pacman_package in "${pacman_packages[@]}"; do
@@ -95,22 +89,25 @@ echo "Install pip packages"
 for pip_package in "${pip_packages[@]}"; do
     pip3 install "$pip_package"
 done
-
-
-##############
-echo "Dotfiles"
-mkdir ~/.config/chezmoi -p
-cd ~/.config/chezmoi
-wget https://raw.githubusercontent.com/fhavrlent/linux-setup/main/chezmoi.toml
-cd ~
-chezmoi init --apply --verbose fhavrlent
 ##############
 
-##############
-"Import console profile"
-dconf load /com/gexperts/Tilix/ < ~/.tilix.dconf
-##############
 
+##############
+echo "Icons and Theme"
+wget https://github.com/cbrnix/Flatery/archive/refs/heads/master.zip
+unzip master.zip
+mkdir ~/.icons/ -p
+mv Flatery-master/Flatery* .icons
+rm -rf Flatery-master
+rm master.zip
+
+wget https://github.com/EliverLara/Nordic/archive/refs/heads/master.zip
+unzip master.zip
+mkdir ~/.themes/Nordic-darker -p
+mv Nordic-master/* .themes/Nordic-darker
+rm -rf Nordic-master
+rm master.zip
+##############
 
 ##############
 echo "Fonts"
@@ -127,13 +124,13 @@ cd ~
 echo "Set Node"
 . ~/.nvm/nvm.sh
 nvm install node
-##############
+
 
 echo "Install npm packages"
 for npm_package in "${npm_packages[@]}"; do
     npm i "$npm_package" -g
 done
-
+##############
 
 ##############
 echo "Mullvad GPG key"
@@ -142,14 +139,44 @@ gpg2 --import mullvad-code-signing.asc
 rm mullvad-code-signing.asc
 ##############
 
-
+##############
 echo "Import GPG Private key"
-cd ~/.gpg
-gpg --batch --import privkey.asc
+gpg --batch --import ~/.gpg/privkey.asc
 (echo 5; echo y; echo save) |
 gpg --command-fd 0 --no-tty --no-greeting -q --edit-key "$(
   gpg --list-packets <privkey.asc |
 awk '$1=="keyid:"{print$2;exit}')" trust
-cd ~
+##############
 
-chsh -s $(which zsh)
+##############
+echo "Install Oh-My-Zsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+rm .zshrc
+##############
+
+##############
+echo "Dotfiles"
+mkdir ~/.config/chezmoi -p
+wget https://raw.githubusercontent.com/fhavrlent/linux-setup/main/chezmoi.toml
+mv ./chezmoi.toml ~/.config/chezmoi
+chezmoi init --apply --verbose fhavrlent
+##############
+
+
+##############
+echo "Tilix theme"
+mkdir ~/.config/tilix/schemes -p
+wget https://raw.githubusercontent.com/arcticicestudio/nord-tilix/develop/src/json/nord.json
+mv ./nord.json ~/.config/tilix/schemes
+##############
+
+##############
+echo "Plank theme"
+mkdir ~/.local/share/plank/themes -p
+wget https://github.com/fhavrlent/linux-setup/raw/main/assets/mcOS-BS-iMacM1-DarkBlue.zip
+mv mcOS-BS-iMacM1-DarkBlue.zip ~/.local/share/plank/themes
+unzip ~/.local/share/plank/themes/mcOS-BS-iMacM1-DarkBlue.zip
+rm ~/.local/share/plank/themes/mcOS-BS-iMacM1-DarkBlue.zip
+##############
+
+zsh -c "`curl -L https://raw.githubusercontent.com/fhavrlent/linux-setup/main/manjaro-xfce-zsh.sh`"

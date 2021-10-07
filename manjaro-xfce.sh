@@ -48,6 +48,7 @@ aur_packages=(
     "todoist-appimage"
     "ulauncher"
     "visual-studio-code-bin"
+    "lightdm-webkit2-theme-glorious"
 )
 
 pip_packages=(
@@ -174,9 +175,21 @@ mv ./nord.json ~/.config/tilix/schemes
 echo "Plank theme"
 mkdir ~/.local/share/plank/themes -p
 wget https://github.com/fhavrlent/linux-setup/raw/main/assets/mcOS-BS-iMacM1-DarkBlue.zip
-mv mcOS-BS-iMacM1-DarkBlue.zip ~/.local/share/plank/themes
-unzip ~/.local/share/plank/themes/mcOS-BS-iMacM1-DarkBlue.zip
-rm ~/.local/share/plank/themes/mcOS-BS-iMacM1-DarkBlue.zip
+unzip ~/.local/share/plank/themes/mcOS-BS-iMacM1-DarkBlue.zip -d ~/.local/share/plank/themes
+rm mcOS-BS-iMacM1-DarkBlue.zip
+##############
+
+##############
+echo "Greeter pre-setup"
+sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme=glorious #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode=true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+##############
+
+##############
+echo "Download wallpaper"
+cd /usr/share/backgrounds/
+sudo wget https://github.com/fhavrlent/linux-setup/raw/main/assets/twomoons.png
+cd ~
 ##############
 
 zsh -c "`curl -L https://raw.githubusercontent.com/fhavrlent/linux-setup/main/manjaro-xfce-zsh.sh`"

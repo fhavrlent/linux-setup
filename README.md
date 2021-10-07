@@ -5,7 +5,7 @@ Script to quicly setup new install of Manjaro Linux XFCE version. Personalised f
 ### Setup script and steps 🚛
 
 1. Install pswd manager to get passwords to use later
-2.  Run the script, `source .zshrc` after done
+2.  Run the script, `chsh -s $(which zsh)` after done
 ```bash
 bash -c "`curl -L https://raw.githubusercontent.com/fhavrlent/manjaro-xfce-setup/main/manjaro-xfce.sh`"
 ```

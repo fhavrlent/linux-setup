@@ -21,9 +21,9 @@ greeter-setup-script=/usr/bin/numlockx on
 7.  Set `Nord` theme in Tilix
 8.  Set Tilix -> Quake -> Hide toolbar
 9.  Keyboard settings -> Shortcuts -> F12 `tilix --quake`
-10.   Turn on Firefall
-11.   Sync VS Code setting
-12.   Add en-US keyboard
+10. Turn on Firefall
+11. Sync VS Code setting
+12. Add en-US keyboard
 13. Set Whisker menu
     
     ![Whisker 1](assets/whisker1.png)![Whisker 2](assets/whisker2.png)![Whisker 3](assets/whisker3.png)

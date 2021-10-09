@@ -53,7 +53,7 @@ aur_packages=(
 )
 
 pip_packages=(
-    "random_username"
+    "random-username"
 )
 
 npm_packages=(
